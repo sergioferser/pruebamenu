@@ -25,16 +25,23 @@ def main_menu():
         button_1=font.render("Play",False,(101,56,25))
         button_1_rect=button_1.get_rect(center=(960,450))
         button_2=font.render("Options",False,(101,56,25))
-        button_2_rect=button_1.get_rect(center=(960,550))
-
+        button_2_rect=button_2.get_rect(center=(960,550))
+        button_3=font.render("Salir",False,(101,56,25))
+        button_3_rect=button_3.get_rect(center=(960,650))
         if button_1_rect.collidepoint((mx,my)):
             if click:
                 introducir_nombre()
         if button_2_rect.collidepoint((mx,my)):
             if click:
                 options()
+        if button_3_rect.collidepoint((mx,my)):
+            if click:
+                pygame.quit()
+                sys.exit()
         screen.blit(button_1,button_1_rect)
         screen.blit(button_2,button_2_rect)
+        screen.blit(button_3,button_3_rect)
+
 
         click= False
         for event in pygame.event.get():
