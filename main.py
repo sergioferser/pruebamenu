@@ -7,7 +7,7 @@ username=""
 pygame.display.set_caption('gamebase')
 screen= pygame.display.set_mode((1920,1080),pygame.RESIZABLE)
 font=pygame.font.Font("font/fuente.TTF",50)
-Stats=pygame.font.Font("font/fuente.TTF",30)
+Stats=pygame.font.Font("font/fuente.TTF",40)
 fondo=pygame.image.load("menu.png").convert()
 def draw_text(text,font,color,surface,x,y):
     textobj= font.render(text,1,color)
@@ -73,8 +73,8 @@ def introducir_nombre():
     while running:
         screen.fill((192,157,86))
         draw_text('INSERT NAME',font,(101,56,25),screen,700,200)
-        draw_text(username,font,(101,56,25),screen,750,500)
-        input_rect = pygame.Rect(700,500,450,70)
+        draw_text(username,font,(101,56,25),screen,900,500)
+        input_rect = pygame.Rect(835,500,250,70)
         color=pygame.Color(101,56,25)
         pygame.draw.rect(screen,color,input_rect,2)
         for event in pygame.event.get():
@@ -86,7 +86,7 @@ def introducir_nombre():
                     running=False
                 elif event.key == pygame.K_BACKSPACE:
                     username = username[:-1]
-                elif(len(username)>=9):
+                elif(len(username)>=3):
                     pass
                 else:
                     username+= event.unicode
@@ -183,16 +183,16 @@ def stats():
             for line in f:
                 row = line.split("\t")
                 player_name = row[0]
-                score = int(row[2])
+                score = str(row[2])
                 name_scores.append((player_name, score))
         # xrange = len(name_scores)
         name_scores.sort(key=lambda name_score: name_score[1], reverse=True)
 
-        for i in 3:
+        for i in range(0,3,1):
             player_name, score = name_scores[i]
-            x_name = 200
-            x_score = 500
-            y = 10 * i
+            x_name = 750
+            x_score = 1050
+            y = 400+100 * i
 
             name_pos = (x_name, y)
             score_pos = (x_score, y)
@@ -204,7 +204,7 @@ def stats():
             screen.blit(score_sprite, score_pos)
 
         button_2=font.render("Salir",False,(101,56,25))
-        button_2_rect=button_1.get_rect(center=(960,550))
+        button_2_rect=button_2.get_rect(center=(960,700))
 
         if button_2_rect.collidepoint((mx,my)):
             if click:
